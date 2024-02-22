@@ -106,7 +106,9 @@ public:
 
   string three_in_a_row_in_the_top_row()
   {
-    if (board->get_mark(1) == board->get_mark(2) && board->get_mark(2) == board->get_mark(3) && board->get_mark(1) != "_")
+    if (board->get_mark(1) == board->get_mark(2) && 
+        board->get_mark(2) == board->get_mark(3) && 
+        board->get_mark(1) != "_")
     {
       return board->get_mark(1);
     }

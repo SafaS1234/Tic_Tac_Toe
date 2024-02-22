@@ -57,15 +57,17 @@ public:
         player_symbol = 'X';
       }
 
-      cout << creator->formatted_board() << endl;
 
       if (rules-> winner()) 
       {
-        cout << "Player " << (player_symbol == 'O' ? 'X' : 'O') << " won." << endl;
+        cout << creator->formatted_board() << endl;
+        cout << "Player " << (player_symbol == 'O' ? 'X' : 'O') 
+             << " won." << endl;
       } 
     
       else if (rules->is_draw()) 
      {
+        cout << creator->formatted_board() << endl;
         cout << "It's a draw. No one wins." << endl;
      }
 
