@@ -30,13 +30,49 @@ public:
   void start()
   {
     string user_input = "";
+    char player_symbol = 'X';
+    int cell_choice;
 
     while (rules->in_progress())
     {
-      cout << creator->formatted_board();
+      cout << creator->formatted_board() << endl;
       cout << "Which cell?" << endl;
-      cin >> user_input;
-      board->make_move(stoi(user_input), 'X');
+      cin >> cell_choice;
+
+      if (!rules->validate_input(cell_choice))
+      {
+        cout << " Wrong cell, enter a different one: " << endl;
+        cin >> cell_choice;
+      }
+
+      board->make_move(cell_choice, player_symbol);
+
+      if (player_symbol == 'X')
+      {
+        player_symbol = 'O';
+      }
+
+      else
+      {
+        player_symbol = 'X';
+      }
+
+      cout << creator->formatted_board() << endl;
+
+      if (rules-> winner()) 
+      {
+        cout << "Player " << (player_symbol == 'O' ? 'X' : 'O') << " won." << endl;
+      } 
+    
+      else if (rules->is_draw()) 
+     {
+        cout << "It's a draw. No one wins." << endl;
+     }
+
+     if(!rules->in_progress())
+     {
+        break;
+     }
     }
   }
 };

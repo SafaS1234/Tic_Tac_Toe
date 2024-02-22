@@ -101,7 +101,7 @@ public:
 
   bool in_progress()
   {
-    return winner() && !is_draw();
+    return !winner() && !is_draw();
   }
 
   string three_in_a_row_in_the_top_row()

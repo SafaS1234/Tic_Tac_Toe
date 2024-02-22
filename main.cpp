@@ -1,7 +1,8 @@
-#include "board.h"
+#include "game.h"
 #include "consoleBoardCreator.h"
 #include "rules.h"
-#include "game.h"
+#include "board.h"
+
 #include <iostream>
 #include <array>
 #include <cassert>
