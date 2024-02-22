@@ -30,16 +30,78 @@ public:
     return true;
   }
 
+  bool winner()
+  {
+    for (int i = 0; i < 3; i++)
+    {
+        if (check_row(i) != "_" || check_column(i) != "_")
+        {
+            return true;
+        }
+    }
+
+    return check_diagonals() != "_";
+  }
+
+  string check_row(int row)
+  {
+    int start = row * 3 +1;
+
+    if (board-> get_mark(start) == board-> get_mark (start +1) && 
+        board-> get_mark(start+1) == board-> get_mark(start+2) &&
+        board-> get_mark(start) != "_")
+        {
+            return board-> get_mark(start);
+        }
+
+        return "_";
+  }
+  
+  string check_column(int column)
+  {
+    if (board->get_mark(column + 1) == board->get_mark(column + 4) && 
+        board->get_mark(column + 4) == board->get_mark(column + 7) && 
+        board->get_mark(column + 1) != "_") 
+        {
+            return board->get_mark(column + 1);
+        }
+  
+    return "_";
+   }
+
+  string check_diagonals()
+  {
+    if ((board->get_mark(1) == board->get_mark(5) && 
+         board->get_mark(5) == board->get_mark(9) && 
+         board->get_mark(1) != "_") || 
+        (board->get_mark(3) == board->get_mark(5) && 
+         board->get_mark(5) == board->get_mark(7) && 
+         board->get_mark(3) != "_")) 
+        {
+            return board->get_mark(5);
+        }
+    
+    return "_";
+
+   }
+
+  bool is_draw()
+  {
+    for (int i = 1; i <= 9; i++) 
+    {
+        if (board->get_mark(i) == "_") 
+        {
+            return false;
+        }
+    }
+
+    return !winner();
+   }
+
+
   bool in_progress()
   {
-    // We need to ask the Board object if there are any spaces still open.
-    // We also need to check if there a winner - three in a row, vertical, horizontal, or diagonal.
-    // The code below is a partial implementation where we check for three in a row in the top row.
-    if (three_in_a_row_in_the_top_row() == "_")
-    {
-      return true;
-    }
-    return false;
+    return winner() && !is_draw();
   }
 
   string three_in_a_row_in_the_top_row()

@@ -9,6 +9,8 @@
 #include <cassert>
 #include <string>
 
+using namespace std;
+
 class Game
 {
 private:
@@ -17,7 +19,8 @@ private:
   ConsoleBoardCreator *creator;
 
 public:
-  Game(Board *board_ptr, Rules *rules_ptr, ConsoleBoardCreator *creator_ptr)
+  Game(Board *board_ptr, Rules *rules_ptr, 
+       ConsoleBoardCreator *creator_ptr)
   {
     board = board_ptr;
     rules = rules_ptr;
