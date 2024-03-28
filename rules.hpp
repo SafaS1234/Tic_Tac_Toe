@@ -1,34 +1,36 @@
-#ifndef RULES_H
-#define RULES_H
+// #ifndef RULES_H
+// #define RULES_H
+// #include <iostream>
+// #include <array>
+// #include <cassert>
+// #include <string>
 
-#include "board.h"
-#include <iostream>
-#include <array>
-#include <cassert>
-#include <string>
+#pragma once
+#include "board.hpp"
 
 using namespace std;
 
 class Rules
 {
   Board *board;
+  string three_in_a_row(int cell_one, int cell_two, int cell_three);
 
 public:
-  Rules(Board *inputted_board)
-  {
-    board = inputted_board;
-  }
+  Rules(Board *inputted_board);
+//   {
+//     board = inputted_board;
+//   }
 
-  bool validate_input(int input)
-  {
-    string current_mark = board->get_mark(input);
-    if (input < 1 || input > 9 || current_mark != "_")
-    {
-      return false;
-    }
+  bool validate_input(int input);
+//   {
+//     string current_mark = board->get_mark(input);
+//     if (input < 1 || input > 9 || current_mark != "_")
+//     {
+//       return false;
+//     }
 
-    return true;
-  }
+//     return true;
+//   }
 
   bool winner()
   {
@@ -99,10 +101,10 @@ public:
    }
 
 
-  bool in_progress()
-  {
-    return !winner() && !is_draw();
-  }
+  bool in_progress();
+//   {
+//     return !winner() && !is_draw();
+//   }
 
   string three_in_a_row_in_the_top_row()
   {
@@ -119,4 +121,4 @@ public:
   }
 };
 
-#endif
+//#endif
