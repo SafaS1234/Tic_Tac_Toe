@@ -8,8 +8,33 @@ HumanPlayer::HumanPlayer(Board *inputted_board, char symbol)
 
 void HumanPlayer::move()
 {
+  int cell;
+  bool valid_input = false;
   string user_input = "";
-  cout << "Which cell?";
-  cin >> user_input;
-  board->make_move(stoi(user_input), symbol);
+
+  while(!valid_input)
+  {
+    cout << "Which cell? " <<endl;
+    cin >> user_input;
+
+    cell = stoi(user_input);
+
+    if(cell < 1|| cell > 9)
+    {
+        cout << "Invalid. Enter a number between 1-9." << endl;
+        cout << "Which cell? " <<endl;
+        cin >> user_input;
+    }
+
+    if (board-> get_mark(cell) != "_")
+    {
+        cout << "Invalid. Pick an empty cell." <<endl;
+        cout << "Which cell? " <<endl;
+        cin >> user_input;
+    }
+
+    valid_input = true;
+  }
+
+  board->make_move(cell, symbol);
 }
