@@ -8,6 +8,8 @@ using namespace std;
 
 Board::Board()
 {
+  this->size = size;
+  board.resize(size * size, '_');
   this->create_empty_board();
 }
 

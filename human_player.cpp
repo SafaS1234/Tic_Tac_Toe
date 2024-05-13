@@ -29,8 +29,9 @@ void HumanPlayer::move()
     if (board-> get_mark(cell) != "_")
     {
         cout << "Invalid. Pick an empty cell." <<endl;
-        cout << "Which cell? " <<endl;
-        cin >> user_input;
+        continue;
+        //cout << "Which cell? " <<endl;
+        //cin >> user_input;
     }
 
     valid_input = true;
