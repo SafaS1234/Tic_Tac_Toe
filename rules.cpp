@@ -6,34 +6,57 @@ Rules::Rules(Board *inputted_board)
   board = inputted_board;
 }
 
-bool Rules::validate_input(int input)
+bool Rules::validate_input(int row, int col)
 {
-  string current_mark = board->get_mark(input);
-  if (input < 1 || input > 9 || current_mark != "_")
-  {
-    return false;
-  }
-
-  return true;
+  return (row >= 0 && row < board->size() && col >=0 col < board -> size());
 }
 
 bool Rules::in_progress()
 {
-  if (three_in_a_row(1, 2, 3) == "_" && three_in_a_row(4, 5, 6) == "_" && three_in_a_row(7, 8, 9) == "_" && three_in_a_row(1, 5, 9) == "_" && three_in_a_row(3, 5, 7) == "_")
+  for (int row = 0; row < board-> size(); row++)
   {
-    return true;
+    for (int col = 0; col < board-> size(); col++)
+    {
+      if(three_in_a_row(row, col, 0,1)||three_in_a_row(row, col, 1,0)||
+         three_in_a_row(row, col, 1,1)||three_in_a_row(row, col, 1,-1))
+         {
+            return false;
+         }
+    }
   }
+
+  for (int row = 0; row < board->size(); ++row)
+  {
+    for (int col = 0; col < board->size(); ++col)
+    {
+      if (board->get_mark(row, col) == "_")
+      {
+        return true;
+      }
+    }
+  }
+
   return false;
+
 }
 
-string Rules::three_in_a_row(int cell_one, int cell_two, int cell_three)
+bool Rules::three_in_a_row(int row1, int col1, int row2, int col2)
 {
-  if (board->get_mark(cell_one) == board->get_mark(cell_two) && board->get_mark(cell_two) == board->get_mark(cell_three) && board->get_mark(cell_one) != "_")
+  char mark = board->get_mark(row1, col1);
+  if (mark == '_')
   {
-    return board->get_mark(cell_one);
+    return false;
   }
-  else
+
+  for (int i = 1; i < 3; ++i)
   {
-    return "_";
+    int row = row1 + i * row2;
+    int col = col1 + i * col2;
+    if (!validate_input(row, col) || board->get_mark(row, col) != mark)
+    {
+      return false;
+    }
   }
+
+  return true;
 }

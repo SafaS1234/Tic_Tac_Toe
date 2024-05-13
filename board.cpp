@@ -1,12 +1,13 @@
 #include <iostream>
 #include <array>
+#include <vector>
 #include <cassert>
 #include <string>
 #include "board.hpp"
 
 using namespace std;
 
-Board::Board()
+Board::Board(int size)
 {
   this->size = size;
   board.resize(size * size, '_');
@@ -21,12 +22,12 @@ void Board::create_empty_board()
   }
 }
 
-void Board::make_move(int cell, char mark)
+void Board::make_move(int row, int col, char mark)
 {
-  board[cell - 1] = mark;
+  board[row*size +col] = mark;
 }
 
-string Board::get_mark(int cell)
+string Board::get_mark(int row, int col)
 {
-  return board[cell - 1];
+  return board[row*size +col];
 }

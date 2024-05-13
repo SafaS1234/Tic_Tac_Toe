@@ -5,10 +5,10 @@ class Rules
 {
 private:
   Board *board;
-  string three_in_a_row(int cell_one, int cell_two, int cell_three);
+  bool three_in_a_row(int row1, int col1, int row2, int col2);
 
 public:
   Rules(Board *inputted_board);
-  bool validate_input(int input);
+  bool validate_input(int row, int col);
   bool in_progress();
 };
